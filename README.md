@@ -34,16 +34,18 @@ token=自己的token字符串 ./dynv6.sh 自己名字.dynv6.net
 这里没设置ssh的需要操作下：  
 打开ssh服务，ssh登录到路由器，我一直用的bitvise ssh（打个广告，本人强推这个，tftp很好用。可惜这个软件只有windows版本）。把dynv6.sh传到路由器，这里得传到/etc/storage，所以对应的命令是  
 token=自己的token字符串 **/etc/storage**/dynv6.sh 自己名字.dynv6.net  
-然后在脚本最后加入即可：  
-**placeholder**  
-重启路由器后就可以在dynv6网站看到自己的ip获取到了
-**placeholder**  
+然后在脚本最后加入即可  
+<img src="https://github.com/chinasoul/chinasoul.github.io/blob/main/ddns_pics/WeChat%20Screenshot_20210123223415.png" width="600"/><br/>
+重启路由器后就可以在dynv6网站看到自己的ip获取到了  
+<img src="https://github.com/chinasoul/chinasoul.github.io/blob/main/ddns_pics/WeChat%20Screenshot_20210123223506.png" width="600"/><br/>
 当然可以在crontab里定时执行解析  
-**placeholder**
+<img src="https://github.com/chinasoul/chinasoul.github.io/blob/main/ddns_pics/WeChat%20Screenshot_20210123223736.png" width="600"/><br/>
 不过可惜的是，在外网无法ping通也无法在浏览器访问这个xxx.dynv6.net，换成ip就没问题，是不是被抢了。。
 后来又试了afraid ddns  
 http://freedns.afraid.org/dynamic/
-ping的时候会显示出正确的ip不过还是不通
+ping的时候会显示出正确的ip不过还是不通  
+<img src="https://github.com/chinasoul/chinasoul.github.io/blob/main/ddns_pics/WeChat%20Screenshot_20210123224216.png" width="600"/><br/>
+
 最后duckdns可以
 官方文档有参数  
 差不多这样就可以https://www.duckdns.org/update?domains=xxxxxxx.duckdns.org&token=8e44xxxx-xxxx-xxxx&ipv6=2409:8xxxxxx
@@ -61,7 +63,7 @@ $bin "http://dynv6.com/api/update?hostname=$hostname&ipv6=$current&token=$token"
 $bin "https://www.duckdns.org/update?domains=xxxxxx.duckdns.org&token=8e44xxxx-xxx-xxx-xx767&ipv6=$current"
 ```
 这样dynv6和duckdns都能获取了，当然现在可以删掉dynv6了，自己甚至可以改写dynv6.sh让它仅仅适用在duckdns或者直接用curl集成到自定义脚本中然后删掉这个脚本。  
-**placeholder**  
+<img src="https://github.com/chinasoul/chinasoul.github.io/blob/main/ddns_pics/WeChat%20Image_20210123230425.jpg" width="200"/><br/>
 
 #### 远程控制局域网的电脑桌面  
 一直在用vncviewer，但是这个不支持ipv6的地址，网上说可以[ipv6]:[port]但我试过不行  
@@ -73,7 +75,7 @@ laptop_address=$(ip -6 neigh | sed -n 's/\([0-9a-f:]\{26,\}\).*xx:xx:xx:xx:91:ae
 ```
 增加一行获取laptop_addr
 为什么这么写？  
-**placeholder**  
+<img src="https://github.com/chinasoul/chinasoul.github.io/blob/main/ddns_pics/WeChat%20Screenshot_20210123225256.png" width="600"/><br/>
 用这个你可以看到局域网内有很多设备，你的笔记本手机等等
 ```
 ip -6 neigh | sed 's/\([0-9a-f:].*\).*/\1/p'
