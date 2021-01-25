@@ -64,6 +64,7 @@ $bin "https://www.duckdns.org/update?domains=xxxxxx.duckdns.org&token=8e44xxxx-x
 ```
 这样dynv6和duckdns都能获取了，当然现在可以删掉dynv6了，自己甚至可以改写dynv6.sh让它仅仅适用在duckdns或者直接用curl集成到自定义脚本中然后删掉这个脚本。  
 <img src="https://github.com/chinasoul/chinasoul.github.io/blob/main/ddns_pics/WeChat%20Image_20210123230425.jpg" width="200"/><br/>
+<img src="https://github.com/chinasoul/chinasoul.github.io/blob/main/ddns_pics/WeChat%20Screenshot_20210123225256.png" width="600"/><br/>
 
 #### 远程控制局域网的电脑桌面  
 一直在用vncviewer，但是这个不支持ipv6的地址，网上说可以[ipv6]:[port]但我试过不行  
@@ -75,7 +76,7 @@ laptop_address=$(ip -6 neigh | sed -n 's/\([0-9a-f:]\{26,\}\).*xx:xx:xx:xx:91:ae
 ```
 增加一行获取laptop_addr
 为什么这么写？  
-<img src="https://github.com/chinasoul/chinasoul.github.io/blob/main/ddns_pics/WeChat%20Screenshot_20210123225256.png" width="600"/><br/>
+<img src="https://github.com/chinasoul/chinasoul.github.io/blob/main/ddns_pics/WeChat%20Screenshot_20210123230935.png" width="600"/><br/>
 用这个你可以看到局域网内有很多设备，你的笔记本手机等等
 ```
 ip -6 neigh | sed 's/\([0-9a-f:].*\).*/\1/p'
@@ -87,4 +88,23 @@ laptop_current=$laptop_address/$netmask
 $bin "https://www.duckdns.org/update?domains=xxxxx.duckdns.org&token=8e4xxxxxx767&ipv6=$laptop_current"
 ```
 用类似的方法就给笔记本也做了ddns  
-**placeholder**
+
+附上duckdns参数
+```
+You can update your domain(s) with a single HTTPS get to DuckDNS
+
+https://www.duckdns.org/update?domains={YOURVALUE}&token={YOURVALUE}[&ip={YOURVALUE}][&ipv6={YOURVALUE}][&verbose=true][&clear=true]
+The domain can be a single domain - or a comma separated list of domains.
+The domain does not need to include the .duckdns.org part of your domain, just the subname.
+If you do not specify the IP address, then it will be detected - this only works for IPv4 addresses
+You can put either an IPv4 or an IPv6 address in the ip parameter
+If you want to update BOTH of your IPv4 and IPv6 records at once, then you can use the optional parameter ipv6
+to clear both your records use the optional parameter clear=true
+A normal good response is
+
+OK
+A normal bad response is
+
+KO
+```
+如果发现解析出了Ipv4地址（显然这个不应该，因为我们并没有固定的IPV4地址，解析出来会造成无法访问）加上&clear=true清理下
