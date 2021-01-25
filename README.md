@@ -30,10 +30,12 @@ dynv6官方文档里用的一种用shell脚本:
 https://dynv6.com/docs/apis  
 Use our update script  
 We provide a small script that updates your address at dynv6. You can run it with:  
-token=自己的token字符串 ./dynv6.sh 自己名字.dynv6.net  
+token=自己的token字符串 ./dynv6.sh 自己名字.dynv6.net
 这里没设置ssh的需要操作下：  
-打开ssh服务，ssh登录到路由器，我一直用的bitvise ssh（打个广告，本人强推这个，tftp很好用。可惜这个软件只有windows版本）。把dynv6.sh传到路由器，这里得传到/etc/storage，所以对应的命令是  
-token=自己的token字符串 **/etc/storage**/dynv6.sh 自己名字.dynv6.net  
+打开ssh服务，ssh登录到路由器，我一直用的bitvise ssh（打个广告，本人强推这个，tftp很好用。可惜这个软件只有windows版本）。把dynv6.sh传到路由器，这里得传到/etc/storage，所以对应的命令是
+```
+token=自己的token字符串 **/etc/storage**/dynv6.sh 自己名字.dynv6.net
+```
 然后在脚本最后加入即可  
 <img src="https://github.com/chinasoul/chinasoul.github.io/blob/main/ddns_pics/WeChat%20Screenshot_20210123223415.png" width="600"/><br/>
 重启路由器后就可以在dynv6网站看到自己的ip获取到了  
