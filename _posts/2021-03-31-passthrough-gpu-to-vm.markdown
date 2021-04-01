@@ -55,3 +55,9 @@ tags:
 2. 不用virt-manager，直接用qemu命令行，这样任何地方都用不到vnc，缺点是无法使用图形化
 
 3. host接上显示器，face to face直接操作host
+
+#################################
+
+4.1更新，有点复杂还没弄清头绪。。
+
+在host没有装driver的情况下，guest使用图形化是没任何问题的。只要host上有driver，guest就无法启动桌面，然后host卸载了driver，guest还是不行，guest要卸载driver再重装就好了。。。
